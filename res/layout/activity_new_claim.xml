@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center"
+        android:text="New Claim"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/claimName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Claim Name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/claimStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Claim Start Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/claimEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Claim End Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/claimDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Expenses"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ListView
+        android:id="@+id/expenceList"
+        android:layout_width="match_parent"
+        android:layout_height="226dp"
+        android:layout_weight="0.12" >
+    </ListView>
+
+    <Button
+        android:id="@+id/addNewExpense"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Add New Expence Item" />
+
+    <Button
+        android:id="@+id/submitClaim"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Submit Claim" />
+
+</LinearLayout>
