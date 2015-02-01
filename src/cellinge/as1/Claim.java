@@ -1,5 +1,6 @@
 package cellinge.as1;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -13,10 +14,12 @@ public class Claim {
 	protected String description;
 	protected String status;
 	
+
+	protected ArrayList<Expense> expenseList;
 	
-	public Claim() {
+	public Claim(String status) {
 		super();
-		
+		this.status = status; 
 	}
 	
 	
@@ -62,6 +65,17 @@ public class Claim {
 	
 	public String toString(){
 		return "Claim[name=" + Name + ", startDate=" + startDate + ", endDate=" + endDate + ", description=" + description +"]";
+	}
+	
+	public ArrayList<Expense> getExpences() {
+		return expenseList;
+	}
+
+
+	
+	public void addExpense(Expense expense){
+		expenseList.add(expense);
+		
 	}
 	
 }

@@ -64,7 +64,8 @@
         android:id="@+id/addNewExpense"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Add New Expence Item" />
+        android:text="Add New Expence Item" 
+        android:onClick= "newExpense" />
 
     <Button
         android:id="@+id/submitClaim"

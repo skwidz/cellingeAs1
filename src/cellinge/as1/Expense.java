@@ -13,7 +13,7 @@ public class Expense extends Claim {
 	protected Date date;
 	
 	public Expense() {
-		super();
+		super("In Progress");
 		// TODO Auto-generated constructor stub
 	}
 	

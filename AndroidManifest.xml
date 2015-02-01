@@ -44,6 +44,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cellinge.as1.NewClaimActivity" />
         </activity>
+        <activity
+            android:name="cellinge.as1.NewExpense"
+            android:label="@string/title_activity_new_expence"
+            android:parentActivityName="cellinge.as1.NewClaimActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cellinge.as1.NewClaimActivity" />
+        </activity>
     </application>
 
 </manifest>

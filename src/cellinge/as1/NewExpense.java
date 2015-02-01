@@ -8,12 +8,12 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 
-public class New_Expense extends Activity {
+public class NewExpense extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new__expense);
+		setContentView(R.layout.activity_new_expense);
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}
@@ -31,7 +31,7 @@ public class New_Expense extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new__expense, menu);
+		getMenuInflater().inflate(R.menu.new_expence, menu);
 		return true;
 	}
 
@@ -51,5 +51,6 @@ public class New_Expense extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 
 }
