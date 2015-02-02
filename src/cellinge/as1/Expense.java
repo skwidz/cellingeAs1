@@ -7,10 +7,10 @@ import android.widget.EditText;
 public class Expense extends Claim {
 
 	protected String category; 
-	protected String description; 
-	protected int  amount;
+	protected String expenseDescription; 
+	protected String  amount;
 	protected String currency;
-	protected Date date;
+	protected String date;
 	
 	public Expense() {
 		super("In Progress");
@@ -25,19 +25,19 @@ public class Expense extends Claim {
 		this.category = category;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getexpenseDescription() {
+		return expenseDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setexpenseDescription(String expenseDescription) {
+		this.expenseDescription = expenseDescription;
 	}
 
-	public int getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
@@ -49,10 +49,13 @@ public class Expense extends Claim {
 		this.currency = currency;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
+	
+	public String getDate() {
+		return date;
+	}
 	
 	
 	

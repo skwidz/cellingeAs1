@@ -56,6 +56,7 @@
         android:layout_alignRight="@+id/newClaim"
         android:layout_below="@+id/newClaim"
         android:layout_marginTop="22dp"
-        android:text="Veiw All Claims" />
+        android:text="Veiw All Claims" 
+        android:onClick="viewClaims"/>
 
 </RelativeLayout>

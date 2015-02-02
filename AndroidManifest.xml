@@ -33,7 +33,7 @@
                 android:value="cellinge.as1.MainActivity" />
         </activity>
         <activity
-            android:name="cellinge.as1.VeiwClaims"
+            android:name="cellinge.as1.ViewClaims"
             android:label="@string/title_activity_veiw_claims" >
         </activity>
         <activity

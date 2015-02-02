@@ -13,6 +13,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -41,7 +42,11 @@ public class NewClaimActivity extends Activity {
 	private String startDate;
 	private String endDate; 
 	private String description; 
-		
+	//expense variables
+	private String expenseDate;
+	private String expenseCategory;
+	private String expenseAmount;
+	private String expenseCurrency;
 	
 	private ArrayList<Expense> expenses; 
 	private ArrayAdapter<Expense> adapter;
@@ -51,6 +56,34 @@ public class NewClaimActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_claim);
+		//Receiving data from the expense activity
+		Intent intent= getIntent();
+		if (newClaim == null){
+			newClaim = new Claim("In Progress");
+		}
+		try{
+			expenseDate = intent.getExtras().getString("date");
+			expenseCategory = intent.getExtras().getString("category");
+			expenseAmount = intent.getExtras().getString("amount");
+			expenseCurrency = intent.getExtras().getString("currency");
+			Expense newExpense = new Expense();
+			newExpense.setDate(expenseDate);
+			newExpense.setCategory(expenseCategory);
+			newExpense.setCurrency(expenseCurrency);
+			newExpense.setAmount(expenseAmount);
+			newClaim.addExpense(newExpense);
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();			
+		}
+		expenses = newClaim.getExpences();
+		if(expenses == null){
+			expenses = new ArrayList<Expense>();
+		}
+		adapter = new ArrayAdapter<Expense>(this, R.layout.list_item, expenses);
+		//expensesList.setAdapter(adapter);
+		//adapter.notifyDataSetChanged();
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -60,36 +93,50 @@ public class NewClaimActivity extends Activity {
 		claimDescription = (EditText) findViewById(R.id.claimDescription);
 		expensesList = (ListView) findViewById(R.id.expenceList);
 		Button newExpense = (Button) findViewById(R.id.addNewExpense);
-		
+		Button submit = (Button) findViewById(R.id.submitClaim);
 		newExpense.setOnClickListener(new View.OnClickListener() {
 			
 			
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				name = claimName.getText().toString();
-				startDate = claimStartDate.getText().toString();
-				description = claimDescription.getText().toString();
-				endDate = claimEndDate.getText().toString(); 
 				newExpense(v);
 				
 ;			}
 		});
+		
+		submit.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				claims.add(newClaim);
+				saveInFile(claims);
+				
+				
+			}
+		});
+		
+		
 	
+	}
+	
+	private void gotoMain(){
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 	
 	protected void onStart(){
 		super.onStart();
 		
-		Claim newClaim = new Claim("In Progress");
+		
 		claims = loadfromfile();
 		if (claims == null){
 			claims = new ArrayList<Claim>();
 		}
-		newClaim.expenseList = new ArrayList<Expense>();
+		
 		
 	}
-	
-	
+		
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
@@ -103,18 +150,31 @@ public class NewClaimActivity extends Activity {
 
 	public void newExpense(View veiw){
 		Intent intent = new Intent(this, NewExpense.class);
-		// need to save any inputed data before activity is changed
+		//save the current values to a class and add that class to the list in gson.
+		if (newClaim == null){
+			newClaim = new Claim("In Progress");
+		}
+		name = claimName.getText().toString();
+		description = claimDescription.getText().toString();
+		newClaim.setName(name);
+		newClaim.setDescription(description);
+		claims.add(newClaim);
+		saveInFile(claims);
+		
+		//need to pass the class through to the expence class. 
 		
 		startActivity(intent);
 				
 	}
 	
-	private void saveInFile(Claim claim) {
+	
+	
+	private void saveInFile(ArrayList<Claim> claims) {
 		Gson gson = new Gson();
 		try{
 			FileOutputStream fos = openFileOutput(FILENAME,0);
 			OutputStreamWriter osw = new OutputStreamWriter(fos);
-			gson.toJson(claim, osw);
+			gson.toJson(claims, osw);
 			osw.flush();
 			fos.close(); 
 		}catch (FileNotFoundException e){
@@ -124,7 +184,7 @@ public class NewClaimActivity extends Activity {
 		}
 	}
 	
-	private ArrayList<Claim> loadfromfile(){
+	public ArrayList<Claim> loadfromfile(){
 		Gson gson = new Gson();
 		ArrayList<Claim> claims = new ArrayList<Claim>();
 		try{

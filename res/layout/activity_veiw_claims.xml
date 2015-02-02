@@ -6,10 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".VeiwClaims" >
+    tools:context=".ViewClaims" >
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/claimsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -21,7 +21,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listView1"
+        android:layout_alignLeft="@+id/claimsList"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="74dp"
         android:text="All Claims"
